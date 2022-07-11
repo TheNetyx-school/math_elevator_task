@@ -36,7 +36,6 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    /* print table headers. */
     for(int i = 0;i < max_people_in_lift;i++) {
         fprintf(output_file, "guy%d\t", i + 1);
     }
@@ -47,10 +46,13 @@ int main(int argc, char *argv[])
         for(int j = 0;j < max_people_in_lift;j++) {
             this_weight = generate_random_weight();
             weight += this_weight;
+
             fprintf(output_file, "%.2f\t", this_weight);
         }
         total++;
+
         fprintf(output_file, "%.2f\t", weight);
+
         if(weight > LIFT_MAX_LOAD) {
             fprintf(output_file, "Y\n");
             overweight++;
@@ -67,7 +69,8 @@ int main(int argc, char *argv[])
 double generate_random_weight()
 {
     std::default_random_engine generator;
-    generator.seed(std::chrono::system_clock::now().time_since_epoch().count());
     std::normal_distribution<double> distribution(MEAN_VALUE, STANDARD_DEVIATION);
+
+    generator.seed(std::chrono::system_clock::now().time_since_epoch().count());
     return distribution(generator);
 }
