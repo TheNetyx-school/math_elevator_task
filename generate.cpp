@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
     if (argc == 3) {
         max_people_in_lift = strtol(argv[1], NULL, 10);
     } else {
-        fputs("usage: generate <max people in lift> [output filename]\n", stderr);
+        fputs("Usage: generate lift_capacity output_filename\n", stderr);
         return 1;
     }
     output_file = fopen(argv[2], "w");
