@@ -19,19 +19,18 @@ int main(int argc, char *argv[])
     int max_people_in_lift;
     double this_weight;
     double weight;
-
-    char output_filename[256];
     FILE *output_file;
+
+    total = 0;
+    overweight = 0;
 
     if (argc == 3) {
         max_people_in_lift = strtol(argv[1], NULL, 10);
-        strcpy(output_filename, argv[2]);
     } else {
         fputs("usage: generate <max people in lift> [output filename]\n", stderr);
         return 1;
     }
-
-    output_file = fopen(output_filename, "w");
+    output_file = fopen(argv[2], "w");
     if(!output_file) {
         fputs("failed to open output file\n", stderr);
         return 1;
@@ -59,7 +58,6 @@ int main(int argc, char *argv[])
             fprintf(output_file, "N\n");
         }
     }
-
     printf("%d out of %d trials were overweight (%.2lf%%)\n", overweight, total, (double)overweight / (double)total * 100.0);
 
     fclose(output_file);
