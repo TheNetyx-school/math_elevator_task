@@ -1,7 +1,6 @@
 #include <chrono>
 #include <random>
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
 #define MEAN_VALUE 80.0
